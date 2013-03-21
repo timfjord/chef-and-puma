@@ -8,6 +8,12 @@ define :puma_config, owner: nil, group: nil, directory: nil, rackup: nil,
   params[:pidfile] = ::File.dirname(::File.join params[:name]), 'tmp', 'pids', 'puma.pid'
   params[:state_path] = ::File.dirname(::File.join params[:name]), 'tmp', 'pids', 'puma.state'
   
+  directory ::File.dirname(params[:name]) do
+    recursive true
+    owner params[:owner] if params[:owner]
+    group params[:group] if params[:group]
+  end
+  
   template params[:name] do
     source "puma.rb.erb"
     cookbook "puma"
