@@ -5,8 +5,8 @@ define :puma_config, owner: nil, group: nil, directory: nil, rackup: nil,
                      ssl_bind: nil, restart_command: nil, workers: nil,
                      activate_control_app: '' do
                        
-  params[:pidfile] = ::File.join params[:name], 'tmp', 'pids', 'puma.pid'
-  params[:state_path] = ::File.join params[:name], 'tmp', 'pids', 'puma.state'
+  params[:pidfile] = ::File.dirname(::File.join params[:name]), 'tmp', 'pids', 'puma.pid'
+  params[:state_path] = ::File.dirname(::File.join params[:name]), 'tmp', 'pids', 'puma.state'
   
   template params[:name] do
     source "puma.rb.erb"
