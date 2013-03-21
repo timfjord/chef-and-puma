@@ -5,8 +5,12 @@ define :puma_config, owner: nil, group: nil, directory: nil, rackup: nil,
                      ssl_bind: nil, restart_command: nil, workers: nil,
                      activate_control_app: '' do
                        
-  params[:pidfile] = ::File.dirname(::File.join params[:name]), 'tmp', 'pids', 'puma.pid'
-  params[:state_path] = ::File.dirname(::File.join params[:name]), 'tmp', 'pids', 'puma.state'
+  unless params[:pidfile]
+    params[:pidfile] = ::File.join ::File.dirname(params[:name]), 'tmp', 'pids', 'puma.pid'
+  end
+  unless params[:state_path]
+    params[:state_path] = ::File.join ::File.dirname(params[:name]), 'tmp', 'pids', 'puma.state'
+  end
   
   directory ::File.dirname(params[:name]) do
     recursive true
