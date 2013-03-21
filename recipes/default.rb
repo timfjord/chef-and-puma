@@ -10,8 +10,8 @@ service 'puma' do
   action :start
 end
 
-cookbook_file '/usr/local/bin/run_puma' do
-  source 'run_puma'
+cookbook_file '/usr/local/bin/run-puma' do
+  source 'run-puma'
   mode "0744"
 end
 
