@@ -23,7 +23,7 @@ rackup '<%= @rackup %>'
 #
 # The default is "development".
 #
-environment = <%= @environment.to_sym.inspect %>
+environment '<%= @environment.to_sym.inspect %>'
 
 # Daemonize the server into the background. Highly suggest that
 # this be combined with "pidfile" and "stdout_redirect".
