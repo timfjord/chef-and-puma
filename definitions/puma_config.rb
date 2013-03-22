@@ -3,7 +3,7 @@ define :puma_config, owner: nil, group: nil, directory: nil, rackup: nil,
                      pidfile: nil, state_path: nil, stdout_redirect: '',
                      quiet: false, threads: '0, 16', bind: nil,
                      ssl_bind: nil, restart_command: nil, workers: nil,
-                     activate_control_app: nil do
+                     activate_control_app: true do
                        
   unless params[:pidfile]
     params[:pidfile] = ::File.join ::File.dirname(params[:name]), 'tmp', 'pids', 'puma.pid'

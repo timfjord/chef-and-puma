@@ -138,5 +138,5 @@ workers <%= @workers %>
 # activate_control_app 'unix:///var/run/pumactl.sock', { auth_token: '12345' }
 # activate_control_app 'unix:///var/run/pumactl.sock', { no_token: true }
 <%- if @activate_control_app %>
-activate_control_app <%= Array(@activate_control_app).map(&:inspect).join(', ') unless @activate_control_app %>
+activate_control_app <%= Array(@activate_control_app).map(&:inspect).join(', ') if @activate_control_app != true %>
 <%- end %>
