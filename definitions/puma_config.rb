@@ -5,11 +5,9 @@ define :puma_config, owner: nil, group: nil, directory: nil, rackup: nil,
                      ssl_bind: nil, restart_command: nil, workers: nil,
                      activate_control_app: true do
                        
-  unless params[:pidfile]
-    params[:pidfile] = ::File.join ::File.dirname(params[:name]), 'tmp', 'pids', 'puma.pid'
-  end
+  raise('Pidfile is required') unless params[:pidfile]
   unless params[:state_path]
-    params[:state_path] = ::File.join ::File.dirname(params[:name]), 'tmp', 'pids', 'puma.state'
+    params[:state_path] = ::File.join ::File.dirname(params[:pidfile]), 'puma.state'
   end
   
   directory ::File.dirname(params[:name]) do
